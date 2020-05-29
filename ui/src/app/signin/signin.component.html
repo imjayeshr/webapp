@@ -1,0 +1,29 @@
+<!--login page-->
+<div class="background">
+    <div class="container">
+      <br>
+      <div class="row">
+          <h1 class="h1">LogIn User</h1>
+          <div style="width: 30%; margin: 25px auto;">
+              <form>
+                <!--  Div class for E-mail -->
+                  <div class="form-group">
+                    <input [(ngModel)]="email" class="form-control" type="email" required name="email" placeholder="Enter E-mail"
+                      required minlength="5" maxlength="40" />
+                  </div></br>
+    
+                  <!-- Div class for password -->
+                  <div class="form-group">
+                    <input [(ngModel)]="password" class="form-control" type="password" required name="password" placeholder="Password">
+                  </div></br>    
+
+                   <!-- Div class for Login Button -->
+              <div class="form-group">
+                <button class="loginButton" (click)="UserLogin()">Login</button>
+              </div>
+    
+                </form>
+          </div>
+         </div>
+        </div>
+    </div>
