@@ -8,7 +8,7 @@ jobs:
       - run:
           name: Install npm command
           command: 'npm install'
-build:
+  build:
     docker:
       - image: circleci/node:10.16.3
     steps:
@@ -16,12 +16,13 @@ build:
       - run:
           name: Installing NPM
           command: 'npm install'
+          
 workflows:
   version: 2
   pr-check:
     jobs:
-- pr_check
-build_deploy:
+    - pr_check
+  build_deploy:
     jobs:
     - build:
         filters:
