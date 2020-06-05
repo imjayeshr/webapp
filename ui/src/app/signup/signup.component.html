@@ -3,36 +3,36 @@
     <div class="container">
       <br>
       <div class="row">
-          <h1 style="text-align: center">Sign Up User</h1>
-          <div style="width: 30%; margin: 25px auto;">
+            <div style="width: 30%; margin: 25px auto;">
               <form action="/signup" method="post">
                 <div class="form-group">
+                    <h1 style="text-align: center">Sign Up</h1>
                     <input class="form-control" name="email" required name="account" placeholder="Enter e-mail"
                     [(ngModel)]="email">
-                </div></br>
+                </div><br>
                 <div class="form-group">
                     <input class="form-control" type="text" required name="userName" placeholder="Firstname"
                     [(ngModel)]="firstname">
-                </div></br>
+                </div><br>
                 
                 <div class="form-group">
                     <input class="form-control" type="text" required name="lastName" placeholder="Lastname"
                     [(ngModel)]="lastname">
-                </div></br>
+                </div><br>
 
                 <div class="form-group">
                     <input class="form-control" type="password" required name="password" placeholder="Password"
                     [(ngModel)]="password">
-                </div></br>
+                </div><br>
 
                 <div class="form-group">
                     <input class="form-control" type="password" required name="password" placeholder="Confirm Password"
                     [(ngModel)]="rePassword">
-                </div></br>
+                </div><br>
                
 
                 <div class="form-group">
-                      <button class="b" (click) = "register()">Sign Up!</button>
+                      <button class="b" (click) = "register()">Register</button>
                 </div>
               </form>
               

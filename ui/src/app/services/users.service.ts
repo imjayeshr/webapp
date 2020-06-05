@@ -44,7 +44,7 @@ export class UsersService {
    return this.http.post(this.requestUrl+'/users/signup',body,httpOptions);
   }
 
-  GetUserInfo(email:string) {
+  GetUserInfo(email:string) : Observable<any>{
     const token = localStorage.getItem('token').toString();
     // Attach the JWT token to the request header
     const bearer = 'Bearer ' + token;

@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  pr_check:
+    docker:
+      - image: circleci/node:10.19.0
+    steps:
+      - checkout
+      - run:
+          name: Install npm command
+          command: 'npm install'
+
+  build:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: Installing NPM
+          command: 'npm install'  
+
+
+workflows:
+  version: 2
+  pr-check:
+    jobs:
+    - pr_check
+  build_deploy:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only: master
+    # - deploy:
+    #     filters:
+    #       branches:
+    #         only: master            

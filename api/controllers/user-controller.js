@@ -17,7 +17,11 @@ exports.createNewUser = (req, res) => {
   // Check if email already exists 
   db.query('select * from users where email = ?', [email], (err, result) => {
     if(result.length != 0) {
-      res.status(409).json("Email already exists")
+      var rbody = {
+        "status" : "400",
+        "error" : "Email already exists!"
+      }; 
+      res.json(rbody);
     }
     else { 
           // Hash the tempPassword using bcrypt
@@ -30,12 +34,22 @@ exports.createNewUser = (req, res) => {
         //Insert a new record into the table
         db.query('INSERT INTO users( email, firstname, lastname, pwd) VALUES("'+email+'", "'+firstname+'", "'+lastname+'", "'+password+'")',
         [email, firstname, lastname, password], (err) => {
+          
+          
           if(err) {
-            res.status(400);
+            var rbody = {
+              "status" : "400",
+              "error" : "Error!"
+            }; 
+            res.json(rbody);
           }
-          else 
-          res.status(200).json(result[0]);
-          // res.send('Added user into the table');
+          else {
+
+          }
+          var rbody = {
+            "status" : "200",            
+          }; 
+          res.json(rbody);
         });        
       }
   });
@@ -69,9 +83,15 @@ exports.updatePassword = (req, res) => {
         bcrypt.hash(newpassword, 10, (hasherror, hashresult) => {
           db.query("update users set pwd = ? where email = ? ", [hashresult, email], (updateError, updateResult) => {
             if(updateError) throw updateError;
-            else res.send(updateResult); 
+            else {
+              res.json("Password changed successfully!");
+            }
+            
           })
         })
+      }
+      else {
+        res.json("Password incorrect");
       }
     })
   })

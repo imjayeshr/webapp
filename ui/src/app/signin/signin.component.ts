@@ -44,7 +44,9 @@ export class SigninComponent implements OnInit {
           //this.user = response.user;
 
           console.log(this.email + "logged in ");
+          console.log(response.result);
           localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.result[0].id)
           localStorage.setItem('user',this.email);
           sessionStorage.setItem('user', this.email);
           

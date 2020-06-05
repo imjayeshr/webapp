@@ -1,0 +1,30 @@
+<div class="container">
+    <ul>
+        <li *ngFor = "let book of booksList" >
+            <mat-card *ngIf = "(book.quantity == 0) == false" class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{book.title}}</mat-card-title>
+                  <mat-card-subtitle>Authors: {{book.authors}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <h3>ISBN   : {{book.isbn}}</h3>
+                    <h3>Price  : ${{book.price}}</h3>
+                    <h5>Seller : {{book.seller}}</h5>
+                </mat-card-content>
+                <mat-card-actions *ngIf = "(book.user_id == userId) == false">
+                    <mat-label>Quantity</mat-label>
+                    <select [(ngModel)]="book.cartQuantity" matNativeControl required>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                    <button  (click) = "addToCart(book.id, book.cartQuantity)" mat-button>Add to Cart</button>                  
+                </mat-card-actions>
+              </mat-card>
+        </li>
+    </ul>
+    
+</div>
