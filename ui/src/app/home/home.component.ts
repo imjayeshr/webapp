@@ -58,12 +58,22 @@ export class HomeComponent implements OnInit {
       return;
     }
     else if (this.newpassword === '') {
+      
       alert('please input new password');
       return;
     }
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+    if(!this.newpassword.match(passw)) 
+    { 
+      alert('Weak password, try another...')
+      return true;
+    }
 
-    this.userService.UpdatePassword(this.email, this.oldpassword,this.newpassword).subscribe(result =>{
-      console.log(result);
+    console.log("sending", this.oldpassword, "    -------    ", this.newpassword)
+
+    this.userService.UpdatePassword(this.email, this.oldpassword,this.newpassword).subscribe((res) =>{
+      
+      alert(res);
     })
 
 

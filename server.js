@@ -1,9 +1,11 @@
 const express = require("express"),
   app = express(),
-  port = process.env.PORT || 3301,
+  port = process.env.EXPRESS_PORT || 3301,
   bodyParser = require("body-parser");
   db = require("./config/db");
   cors = require("cors");
+
+console.log("Current environment is " + process.env.EXPRESS_PORT);
 
 //Adding body parser for handling request and response objects.
 app.use(

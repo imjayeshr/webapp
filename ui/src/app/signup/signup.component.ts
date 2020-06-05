@@ -31,6 +31,9 @@ export class SignupComponent implements OnInit {
 
 
   register(){
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
+
+    
     if(this.email == null){
       alert("Email not entered");
     }
@@ -40,18 +43,32 @@ export class SignupComponent implements OnInit {
     else if(this.firstname == null){
       alert("don't leave firstname  blank");
     }
-    else if(this.password != null && this.password == this.rePassword){
+    else if(this.password != null && this.password == this.rePassword && this.rePassword!=null){
+
+      if(!this.password.match(passw)) 
+    { 
+      alert('Weak password, try another...')
+      return true;
+    }
+
       console.log("passwords match"); 
       // If the passwords match send a post request to the back end 
       this.userService.SignUp(this.email, this.firstname, this.lastname, this.password).subscribe((res)=>
       {
         console.log("Received from the back end ", res);
+        if(res.status == 400){
+          alert("Email already exists!")
+        }
+        else {
+          alert("Account created. You can sign in now");
+          this.router.navigate(['/signin']);
+        }
       });
-      this.router.navigate(['/signin']);
+      
       
     }
     else{
-      alert("Invalid password");
+      alert("Invalid input");
     }
   }
 

@@ -25,5 +25,11 @@ module.exports = function (app) {
   //Authenticate a user using the email and the password
   app.route("/users/signin").post(userController.authenticate);
 
+  // Test route to check if node server is running as expected 
+  app.get("/test", (req, res) => {
+    res.send("<p>Im a <br> paragraph</p>");
+  })
+
+  
 
 };
