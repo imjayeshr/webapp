@@ -27,7 +27,8 @@ Backend  : Nodejs
 Frontend : Angular 8
 Database : MySQL 
 
-## Authentication/Authorization: JWT, bcrypt
+## Authentication/Authorization: 
+JWT, bcrypt
 
 
 
