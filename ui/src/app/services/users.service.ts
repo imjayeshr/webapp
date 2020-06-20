@@ -9,7 +9,9 @@ import {Observable} from 'rxjs';
 
 // Stores User Login Account Details and setting up connection from backend
 export class UsersService {
-  requestUrl:string='http://localhost:3301';
+
+  requestUrl:string = "http://" + window.location.hostname + ":3301";
+  //requestUrl:string='http://localhost:3301';
 
   constructor(private http:HttpClient){}
 

@@ -1,41 +1,46 @@
 <div class="container">
-    <h3>Add New book</h3>
     <form (ngSubmit)="submitBook()" #bookForm="ngForm">
+      <h2>Add a new book</h2>
         <div class="form-group">
             <label for="isbn">ISBN</label>
             <input type="text" class="form-control" id="isbn"
                    required
                    [(ngModel)]="isbn" name="isbn">
-          </div>
+          </div><br>
           
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text"  class="form-control" id="title"
                     required
                    [(ngModel)]="title" name="title">
-          </div>
+          </div><br>
 
           <div class="form-group">
             <label for="authors">Authors</label>
             <input type="text"  class="form-control" id="authors"
             required
                    [(ngModel)]="authors" name="authors">
-          </div>
+          </div><br>
 
           <div class="form-group">
             <label for="price">Price</label>
             <input type="number" step="0.01" min="0.01" max="9999.99"  class="form-control" id="price"
             required
                    [(ngModel)]="price" name="price">
-          </div>
+          </div><br>
 
           <div class="form-group">
             <label for="quantity">Quantity</label>
             <input type="number" min="0" max="999" class="form-control" id="quantity" required
                    [(ngModel)]="quantity" name="quantity">
           </div>
+          <!-- <div class="form-group">
+            <label for="quantity">Upload Image</label>
+            <input #image id="imageInput" class="inputfile" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>
+          </div> -->
+          <input type="file"  accept="image/png, image/jpeg, image/jpg" multiple="true" name="profile" (change)="onFileSelect($event)" /><br>
 
-          <button type="submit" class="btn btn-primary" [disabled]="!bookForm.form.valid">Add Book</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!bookForm.form.valid">Submit</button>
           
     </form>
 </div>

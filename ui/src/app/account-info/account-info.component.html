@@ -1,48 +1,55 @@
-<div>
-    <br><button class="logout" (click)="logout()"> Log Out </button><br><br>
-</div>
+<div class="accountContainer">
+  <div>
+    <h1>Account Info</h1>
+    <h2>Firstname: {{firstname}}</h2>
+    <h2>Lastname: {{lastname}}</h2>
+    <h2>Email: {{email}}</h2>
 
-<div>
+
+
     <form>
         <!--  Div class for firstname -->
           <div class="form-group">
-            <h1>Enter Account Details to Update : </h1>
             <input [(ngModel)]="tempfname" class="form-control" type="text" required name="firstname" placeholder="Enter firstname"
               required minlength="5" maxlength="40" />
-          </div><br>
+          </div>
 
           <!-- Div class for lastname -->
           <div class="form-group">
             <input [(ngModel)]="templname" class="form-control" type="text" required name="lastname" placeholder="Enter lastname">
-          </div> <br>   
+          </div>    
 
            <!-- Div class for Login Button -->
       <div class="form-group">
-        <button class="button" (click)="UpdateUserInfo()">Update Account Information</button>
-      </div><br>
-        </form>
-</div>
-
-<br>
-<div>
-    <form>
-      <h1>Enter Password to Update </h1>
-        <!--  Div class for firstname -->
-          <div class="form-group">
-            <input [(ngModel)]="oldpassword" class="form-control" type="password" required name="oldpassword" placeholder="Enter current password"
-              required minlength="5" maxlength="40" />
-          </div><br>
-
-          <!-- Div class for lastname -->
-          <div class="form-group">
-            <input [(ngModel)]="newpassword" class="form-control" type="password" required name="newpassword" placeholder="Enter new password">
-          </div><br>
-           <!-- Div class for Login Button -->
-      <div class="form-group">
-        <button class="button" (click)="UpdatePassword()">Update Password</button>
+        <button class="button" (click)="UpdateUserInfo()">Update Info</button>
       </div>
 
         </form>
+        <form>
+          <!--  Div class for firstname -->
+            <div class="form-group">
+              <input [(ngModel)]="oldpassword" class="form-control" type="password" required name="oldpassword" placeholder="Enter current password"
+                required minlength="5" maxlength="40" />
+            </div>
+  
+            <!-- Div class for lastname -->
+            <div class="form-group">
+              <input [(ngModel)]="newpassword" class="form-control" type="password" required name="newpassword" placeholder="Enter new password">
+            </div>
+  
+             <!-- Div class for Login Button -->
+        <div class="form-group">
+          <button class="button" (click)="UpdatePassword()">Update Password</button>
+        </div>
+  
+          </form>
+</div>
+
+<br>
+
+
 
         
+
+
 </div>

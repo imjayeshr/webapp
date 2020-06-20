@@ -4,8 +4,9 @@ const express = require("express"),
   bodyParser = require("body-parser");
   db = require("./config/db");
   cors = require("cors");
-
-console.log("Current environment is " + process.env.EXPRESS_PORT);
+  s3 = require("./config/s3")
+  
+console.log("Current environment is " + process.env.APPLICATION_ENV);
 
 //Adding body parser for handling request and response objects.
 app.use(
