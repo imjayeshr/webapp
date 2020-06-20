@@ -5,18 +5,20 @@
 "use strict";
 const userController = require("../controllers/user-controller");
 const authChecker = require("../middleware/authChecker");
+//const seq = require("../../config/db");
+const User = require("../models/user")
 
 module.exports = function (app) {
   //Reset the password using email
-  app
-    .route("/users/:email")
-    .get(authChecker, userController.readUser)
+  // app
+  //   .route("/users/:email")
+  //   .get(authChecker, userController.readUser)
 
-  app.route("/users/settings/password")
-    .put(authChecker,userController.updatePassword)
+  // app.route("/users/settings/password")
+  //   .put(authChecker,userController.updatePassword)
   
-  app.route("/users/settings/info")
-    .put(authChecker,userController.updateUserInfo)
+  // app.route("/users/settings/info")
+  //   .put(authChecker,userController.updateUserInfo)
     
 
   //Create a new user
@@ -27,9 +29,7 @@ module.exports = function (app) {
 
   // Test route to check if node server is running as expected 
   app.get("/test", (req, res) => {
-    res.send("<p>Im a <br> paragraph</p>");
+    res.send("The server is up and running!");
   })
-
-  
 
 };

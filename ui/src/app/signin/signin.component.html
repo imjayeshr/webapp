@@ -2,7 +2,8 @@
 <div class="background">
     <div class="container">
       <div class="row">
-          <div style="width: 30%; margin: 35px auto;">
+          
+          <div style="width: 30%; margin: 25px auto;">
               <form>
                 <h1 class="h1">Log In</h1>
                 <!--  Div class for E-mail -->
@@ -14,10 +15,10 @@
                   <!-- Div class for password -->
                   <div class="form-group">
                     <input [(ngModel)]="password" class="form-control" type="password" required name="password" placeholder="Password">
-                  </div><br>
+                  </div>    <br>
 
                    <!-- Div class for Login Button -->
-              <div class="form-group">
+              <div class="form-group loginBtnClass">
                 <button class="loginButton" (click)="UserLogin()">Login</button>
               </div>
     

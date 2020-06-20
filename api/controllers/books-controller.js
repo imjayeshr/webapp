@@ -1,17 +1,25 @@
 const mysql = require('mysql');
 const db = require("../../config/db");
 var moment = require('moment'); // require
+const Book = require("../models/book")
+const s3 = require("../../config/s3"); 
+const aws = require("aws-sdk");
+const fs = require("fs");
 
 // To get all the books
 exports.getBooks = (req, res) => {
-  db.query("select books.* , CONCAT (users.firstname, ' ', users.lastname) AS seller from books inner join users on books.user_id = users.id order by books.price; ", (err,result) => {
-    if(err) res.send(err);
-    else res.send(result);
-  })
+  Book.findAll({})
+    .then(result => {
+      res.send(result)
+    })
+    .catch(error => {
+      res.send(error);
+    })
 };
 
 // To add/create a book
 exports.addBook = (req, res) => {
+    //var images = req.file.location; 
     var isbn = req.body.isbn;
     var title = req.body.title;
     var authors = req.body.authors;
@@ -21,16 +29,24 @@ exports.addBook = (req, res) => {
     var price = req.body.price;
     var quantity = req.body.quantity;
     var userId = req.body.userId;
+    var images = req.files; 
+    var urls = []; 
+    for (let i = 0; i<images.length; i++){
+      urls.push(images[i].location);
+    } 
+    var url = urls.join(';');
 
-    db.query('INSERT INTO books(isbn,title,authors, publication_date, price,quantity,user_id) VALUES ("'+isbn+'","'+title+'","'+authors+'","'+publicationDate+'","'+price+'","'+quantity+'","'+ userId+'")',
-    [isbn,title,authors,publicationDate,price,quantity,userId], (err,result) =>{
-        if(err) {
-            res.status(400);
-          }
-          else{ 
-          res.status(200).json(result);
-          }
-    });
+
+
+    Book.create({
+      isbn, title, authors, publication_date: publicationDate, price, quantity, user_id: userId, images: url
+    })
+      .then(result=>{
+        res.status(200).json(result);
+      })
+      .catch(error=>{
+        res.status(400);
+      })
 
 }
 
@@ -44,39 +60,59 @@ exports.updateBook = (req, res) => {
     let price = req.body.price;
     let quantity = req.body.quantity; 
   
-            db.query("update books set isbn = ? , title = ? , price = ? , quantity = ? , authors = ? where id = ? ", [isbn, title, price, quantity, authors, bookId], (updateError, updateResult) => {
-              if(updateError) {
-                console.log("failed");
-              }
-              else res.send(updateResult)}); 
+    Book.update({isbn, title, authors, price, quantity} , 
+      {
+        where: {
+          id: bookId
+        }
+      })
+        .then(result=>{
+          res.send(result);
+        })
+        .catch(error=>{
+          res.send(error);
+        })
   };
 
+// To delete an image 
+exports.deleteImage = (req,res) => {
+  let id = req.body.id; 
+  let updatedImageString = req.body.updatedImageString; 
+
+  let imageUrl = req.body.imageUrl; 
+  imageUrl = imageUrl.replace("https://bookstore-webapp.s3.amazonaws.com/","");
+  console.log("Deleting b=object with key", imageUrl);
+
+  s3.s3.deleteObject({
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: imageUrl
+  }, function(err,data) {
+    if(!err){
+      Book.update({images:updatedImageString}, {where:{id:id}})
+      .then((result)=> {
+        res.send(result);
+      })
+      .catch((error)=> {
+        res.send(error);
+      })
+    }
+    else {
+      res.send(err)
+    }    
+  })
+
+}
 
 // To delete a book/item 
 exports.deleteBook = (req, res) => {
   let bookId = req.params.id;
-
-  console.log("delete req received for ", bookId);
-  // Get the list of the users who have this book in their cart and the title of the book
-  getBookUsers(bookId)
-    .then((usersList) => {
-      for(user in usersList) {
-        // Call the asynchronous function 
-        insertIntoBufferCart(usersList[user])
-      }      
+  Book.destroy({where: {id: bookId}})
+    .then(result=>{
+      res.send("Deleted");
     })
-    .then(
-        //Call the query function on the db object to delete the item 
-  db.query("delete from books where id = ? ", [bookId], (error, result)=> {
-    if(error) res.send(error);
-    else res.send(result);
-  })
-    )
-    .catch((fetchError)=>{
-      console.log(fetchError);
+    .catch(error=>{
+      res.send("Error deleting");
     })
-
-
 
 }
 
@@ -84,10 +120,15 @@ exports.deleteBook = (req, res) => {
 exports.getSpecificBook = (req, res) => {
   console.log("Request for specific book received");
   var id = req.params.id; 
-  db.query("select * from books where id = ? ", [id], (err, result)=> {
-    if(err) res.send(err)
-    else res.send(result)
-  })
+  Book.findOne({where:{
+    id
+  }})
+    .then((book)=>{
+      res.send(book)
+    })
+    .catch((error)=>{
+      res.send(error);
+    })
 }
 
 // Extract the users function 
@@ -112,5 +153,53 @@ async function insertIntoBufferCart(user){
     else return insertResult
   });
   return result;
+}
+
+exports.testnew = (req,res) => {
+  aws.config.setPromisesDependency();
+    aws.config.update({
+      accessKeyId: "AKIAQ3SZUITGTIBZATQW",
+      secretAccessKey: "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",
+      region: "us-east-1"
+    });
+    const s3 = new aws.S3();
+    var params = {
+      ACL: 'public-read',
+      Bucket: "bookstore-webapp",
+      Body: fs.createReadStream(req.file.path),
+      Key: `userAvatar/${req.file.originalname}`
+    };
+
+    s3.upload(params, (err, data) => {
+      if (err) {
+        console.log('Error occured while trying to upload to S3 bucket', err);
+      }
+
+      if (data) {
+        fs.unlinkSync(req.file.path); // Empty temp folder
+        const locationUrl = data.Location;
+      }
+    });
+}   
+
+
+// To add/create a book
+exports.addImage = (req, res) => {
+  var url = req.file.location; 
+  var images = req.body.images;
+  var id = req.body.id; 
+
+  images = images + ";" + url; 
+
+  Book.update({
+     images: images
+  }, {where: {id}})
+    .then(result=>{
+      res.status(200).json(result);
+    })
+    .catch(error=>{
+      res.status(400);
+    })
+
 }
 

@@ -6,20 +6,37 @@
                         <mat-card-header>
                           <div mat-card-avatar class="example-header-image"></div>
                           <mat-card-title>{{book.title}}</mat-card-title>
-                          <mat-card-subtitle>Authors: {{book.authors}}</mat-card-subtitle>
+                          <mat-card-subtitle>Author(s): {{book.authors}}</mat-card-subtitle>
                         </mat-card-header>
+                        
                         <mat-card-content>
-                            <h3>ISBN    : {{book.isbn}}</h3>
-                            <h3>Price   : ${{book.price}}</h3>
+                          <div class="mySlides">                            
+                            <img src="{{book.imageArray[book.selectedIndex]}}" style="width:100%">     
+                          </div>
+                          <div class="scrollPhotos">
+                            <button (click)="prevImage(book.id)">
+                              Previous
+                            </button>
+                            <button (click)="nextImage(book.id)">
+                              Next
+                            </button>
+                          </div>
+                          <div>
+                            <button (click)="deleteImage(book.id)"class="deleteBtn">Delete image</button>                             
+                            <input type="file"  accept="image/png, image/jpeg, image/jpg" multiple="false" name="profile" (change)="onFileSelect($event)" />
+                            <button (click)="addImage(book)"class="btn btn-primary">Add Image</button>            
+                          </div>                            
+                            <h3>ISBN: {{book.isbn}}</h3>
+                            <h3>Price: ${{book.price}}</h3>
                             <h3>Quantity: {{book.quantity}}</h3>
                             <!-- <h3>Created date: {{book.createdDate}}</h3>
                             <h3>Updated date: {{book.updatedDate}}</h3>           -->
                         </mat-card-content>
                         <mat-card-actions>
-                          <a [routerLink]="['/books/update/',book.id]">Update Book</a>
+                          <a [routerLink]="['/books/update/',book.id]">Update</a>
                           <!-- <button></button> -->
                           <!-- <button  (click) = "updateBook(book.id)" mat-button>Update</button> -->
-                          <button class="deleteBtn" (click) = "deleteBook(book.id)" mat-raised-button color="warn">Delete Book</button>
+                          <button class="deleteBtn" (click) = "deleteBook(book.id)" mat-raised-button color="warn">Delete</button>
                         </mat-card-actions>
                       </mat-card>
                 </div>

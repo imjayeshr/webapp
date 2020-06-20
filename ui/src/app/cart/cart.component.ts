@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
     alert(`new quantity ${newQuantity}`)
     this.cartService.updateCart(itemId, bookId, newQuantity).subscribe(result => {
       console.log(result);
-      this.router.navigate(['/home']);
+      //this.router.navigate(['/home']);
     })
   }
 

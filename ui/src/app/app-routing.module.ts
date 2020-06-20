@@ -8,6 +8,7 @@ import {AllBooksComponent} from './all-books/all-books.component'
 import {AddBookComponent} from './add-book/add-book.component'
 import {UpdateBookComponent} from './manage-books/update-book/update-book.component'
 import {CartComponent} from './cart/cart.component'
+import {ManageBooksComponent} from './manage-books/manage-books.component'
 const routes: Routes = [
   { path : 'signup', component: SignupComponent},
   { path : 'signin', component: SigninComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'books', component: AllBooksComponent},
   { path: 'books/update/:bookId', component: UpdateBookComponent, pathMatch:'full'},
   { path: 'cart', component: CartComponent},
+  { path: 'books/manage', component: ManageBooksComponent, pathMatch: 'full'},
+  { path : 'books/add', component: AddBookComponent, pathMatch: 'full'}
 ];
 
 

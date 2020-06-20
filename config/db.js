@@ -1,27 +1,29 @@
 // Create a connection to MY SQL 
-const mysql = require('mysql'); 
+const Sequelize = require('sequelize');
+const fs = require('fs');
 
-console.log("SQL environment: " + process.env.APPLICATION_ENV);
+let seq;
+const DIALECT = 'mysql';
 
-let db; 
+console.log("env is", process.env.RDS_HOSTNAME);
 
 if (process.env.APPLICATION_ENV === 'prod') {
-    db = mysql.createConnection({
-
+    seq = new Sequelize('ecommerce', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
+        host: process.env.RDS_HOSTNAME,
+        dialect: 'mysql'
     })
-} else {
-        db  = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : 'jayesh2207',
-        database : 'cloudassignment3'
-      });
-      
-      db.connect((err, res)=>{
-          if(err) throw err;    
-          console.log(`SQL Connection successful!`);
-      });
-}
 
-  module.exports = db; 
-  
+    seq
+    .authenticate()
+    .then(() => {
+      console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+      console.error('Unable to connect to the database:', err);
+    });
+      ;
+
+    seq.sync();
+  }    
+
+module.exports = seq; 

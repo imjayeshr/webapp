@@ -24,6 +24,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select'; 
+import {MatMenuModule} from '@angular/material/menu'; 
 
 import { AllBooksComponent } from './all-books/all-books.component';
 import { ManageBooksComponent } from './manage-books/manage-books.component';
@@ -69,7 +70,8 @@ const routes: Routes = [
     MatTabsModule,
     MatDatepickerModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

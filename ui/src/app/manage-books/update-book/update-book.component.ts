@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {BooksService} from '../../services/books/books.service'
 import {Books} from '../../models/books'
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-update-book',
   templateUrl: './update-book.component.html',
@@ -12,7 +14,7 @@ export class UpdateBookComponent implements OnInit {
   id: string
   book: Books
   
-  constructor(private route: ActivatedRoute, private bookService: BooksService) { }
+  constructor(private route: ActivatedRoute, private bookService: BooksService, private router:Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.bookId; 
@@ -25,7 +27,9 @@ export class UpdateBookComponent implements OnInit {
   updateBook(){
     this.bookService.updateBook(this.book.isbn, this.book.title, this.book.authors, this.book.price, this.book.quantity, this.id)
       .subscribe(result => {
+        alert("Book updated");
         console.log(result);
+        this.router.navigate(['/books/manage']);
       })
   }
   

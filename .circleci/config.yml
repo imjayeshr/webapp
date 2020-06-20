@@ -8,6 +8,9 @@ jobs:
       - run:
           name: Install the dependencies 
           command: 'npm install'
+      - run: 
+          name: run the unit test
+          command: 'npm test' 
 
   build:
     docker:
@@ -16,7 +19,10 @@ jobs:
       - checkout
       - run:
           name: Installing NPM
-          command: 'npm install'  
+          command: 'npm install' 
+      - run: 
+          name: run the unit test
+          command: 'npm test' 
 
 
 workflows:
@@ -24,7 +30,7 @@ workflows:
   pr-check:
     jobs:
     - pr_check
-
+    
   build:
 
     jobs:
