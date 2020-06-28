@@ -39,6 +39,9 @@ jobs:
           name: Installing aws cli
           command: sudo pip install awscli
       - run:
+          name: Install the dependencies 
+          command: sudo apt install nodejs
+      - run:
           name: Build Application
           command: |
             cd ui
@@ -77,6 +80,9 @@ workflows:
         filters:
           branches:
             only: master
+  deploy:
+    jobs:
+      - deploy
     # - deploy:
     #     filters:
     #       branches:
