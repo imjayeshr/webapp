@@ -40,6 +40,13 @@ jobs:
           command: | 
             sudo apt-get install python-pip  
             sudo pip install awscli
+      - run: 
+          name: Install node modules with npm
+          command: npm install
+      -save-cache: 
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths: 
+            - ./ui/node_modules
       - run:
           name: Build Application
           command: |
