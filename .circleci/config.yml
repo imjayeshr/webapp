@@ -61,7 +61,6 @@ jobs:
           command: aws deploy create-deployment --application-name csye6225-webapp --deployment-group-name csye6225-webapp-deployment --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=artifacts/webapp.zip
         #  aws deploy create-deployment --application-name billmanagement-webapp --deployment-group-name billmanagement-webapp-deployment --s3-location bucket=${S3_BUCKET_ADDR},bundleType=zip,key=artifacts/webapp.zip --deployment-config-name CodeDeployDefault.AllAtOnce
 
-
 workflows:
   version: 2
   pr-check:
