@@ -40,24 +40,10 @@ jobs:
           command: | 
             sudo apt-get install python-pip  
             sudo pip install awscli
-      - run: 
-          name: Install node modules with npm
-          command: npm install
-          -save-cache: 
-              key: dependency-cache-{{ checksum "package.json" }}
-              paths: 
-                ./ui/node_modules
-      - run:
-          name: Build Application
-          command: |
-            cd ui
-            yes | sudo npm install -g @angular/cli
-            npm install
-            ng build
       - run:
           name: Build Deployment Artifact
           command:  |
-            mkdir codedeploy_artifact
+            mkdir -p codedeploy_artifact
             zip -r webapp.zip codedeploy/*.sh appspec.yml
             pwd
             ls -al
@@ -66,9 +52,10 @@ jobs:
             pwd
             cd codedeploy_artifact
             ls -al
-      #- run: 
-       #   name: Copy artifact to S3
-        #  command: 
+      - run: 
+          name: Copy artifact to S3
+          command: |
+            aws s3 cp codedeploy_artifact/webapp.zip s3://${S3_BUCKET_NAME}/artifacts/webapp.zip
       #- run: 
        #   name: CodeDeploy API call
         #  command: 
