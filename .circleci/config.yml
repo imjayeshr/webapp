@@ -44,7 +44,7 @@ jobs:
           name: Build Application
           command: |
             cd ui
-            sudo npm install -g @angular/cli
+            sudo npm install -g -y @angular/cli
             npm install
             ng build
       - run:
