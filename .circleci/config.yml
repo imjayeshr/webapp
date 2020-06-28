@@ -18,11 +18,50 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Installing NPM
-          command: 'npm install' 
+          name: Installing packages
+          command: 'npm install'
       - run: 
           name: run the unit test
-          command: 'npm test' 
+          command: 'npm test'
+  
+  deploy:
+    docker:
+      - image: circleci/python:2.7-jessie
+    steps:
+      - checkout        
+      - run:
+          name: Updating apt-get
+          command: sudo apt-get update
+      - run:
+          name: Installing wget
+          command: 'sudo apt-get install wget zip unzip'
+      - run:
+          name: Installing aws cli
+          command: sudo pip install awscli
+      - run:
+          name: Build Application
+          command: |
+            cd ui
+            npm install
+            ng build
+      - run:
+          name: Build Deployment Artifact
+          command:  |
+            mkdir codedeploy_artifact
+            zip -r webapp.zip codedeploy/*.sh appspec.yml
+            pwd
+            ls -al
+            mv webapp.zip codedeploy_artifact/
+            ls -al
+            pwd
+            cd codedeploy_artifact
+            ls -al
+      #- run: 
+       #   name: Copy artifact to S3
+        #  command: 
+      #- run: 
+       #   name: CodeDeploy API call
+        #  command: 
 
 
 workflows:
