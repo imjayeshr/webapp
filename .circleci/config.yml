@@ -40,7 +40,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Install the dependencies 
-          command: sudo apt install nodejs
+          command: sudo apt install -y nodejs
       - run:
           name: Build Application
           command: |
