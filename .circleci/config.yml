@@ -37,7 +37,9 @@ jobs:
           command: 'sudo apt-get install wget zip unzip'
       - run:
           name: Installing aws cli
-          command: sudo install awscli
+          command:| 
+            sudo apt-get install python-pip  
+            sudo pip install awscli
       - run:
           name: Build Application
           command: |
@@ -83,8 +85,3 @@ workflows:
     # - deploy:
     #     filters:
     #       branches:
-    #         only: master            
-<<<<<<< HEAD
-=======
-
->>>>>>> 567a31ba0f0278ff9204cdc726047f8549173e49
