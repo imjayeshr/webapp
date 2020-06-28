@@ -37,7 +37,7 @@ jobs:
           command: 'sudo apt-get install wget zip unzip'
       - run:
           name: Installing aws cli
-          command:| 
+          command: | 
             sudo apt-get install python-pip  
             sudo pip install awscli
       - run:
