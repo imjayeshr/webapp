@@ -53,13 +53,14 @@ jobs:
       - run:
           name: Build Deployment Artifact
           command:  |
+            cd ~/
             mkdir -p codedeploy_artifact
             cd project
             echo RDS_HOSTNAME = $RDS_HOSTNAME > rds.txt
-            zip -r webapp-${CIRCLE_BUILD_NUM}.zip *
+            zip -r csye6225-webapp-${CIRCLE_BUILD_NUM}.zip *
             pwd
             ls -al
-            mv webapp-${CIRCLE_BUILD_NUM}.zip  ~/codedeploy_artifact/
+            mv csye6225-webapp-${CIRCLE_BUILD_NUM}.zip  ~/codedeploy_artifact/
             ls -al
             pwd
             cd ~/codedeploy_artifact
@@ -77,7 +78,6 @@ jobs:
             
             aws deploy create-deployment \
             --application-name csye6225-webapp \
-            --deployment-config-name CodeDeployDefault.AllAtOnce \
             --deployment-group-name csye6225-webapp-deployment \
             --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=artifacts/csye6225-webapp-${CIRCLE_BUILD_NUM}.zip --region us-east-1
         
