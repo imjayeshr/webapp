@@ -53,6 +53,7 @@ jobs:
       - run:
           name: Build Deployment Artifact
           command:  |
+            cd ~/
             mkdir -p codedeploy_artifact
             cd project
             echo RDS_HOSTNAME = $RDS_HOSTNAME > rds.txt
