@@ -56,10 +56,10 @@ jobs:
             mkdir -p codedeploy_artifact
             cd project
             echo RDS_HOSTNAME = $RDS_HOSTNAME > rds.txt
-            zip -r webapp-${}CIRCLE_BUILD_NUM}.zip *
+            zip -r webapp-${CIRCLE_BUILD_NUM}.zip *
             pwd
             ls -al
-            mv webapp-${}CIRCLE_BUILD_NUM}.zip  ~/codedeploy_artifact/
+            mv webapp-${CIRCLE_BUILD_NUM}.zip  ~/codedeploy_artifact/
             ls -al
             pwd
             cd ~/codedeploy_artifact
@@ -67,19 +67,19 @@ jobs:
       - run: 
           name: Copy artifact to S3
           command: |
-            aws s3 cp /home/circleci/codedeploy_artifact/csye6225-webapp-${}CIRCLE_BUILD_NUM}.zip s3://${S3_BUCKET_NAME}
+            aws s3 cp /home/circleci/codedeploy_artifact/csye6225-webapp-${CIRCLE_BUILD_NUM}.zip s3://${S3_BUCKET_NAME}
       - run: 
           name: CodeDeploy API call
           command: |
             aws deploy register-application-revision \
               --application-name csye6225-webapp \
-              --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=csye6225-webapp-${}CIRCLE_BUILD_NUM}.zip --region us-east-1
+              --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=csye6225-webapp-${CIRCLE_BUILD_NUM}.zip --region us-east-1
             
             aws deploy create-deployment \
             --application-name csye6225-webapp \
             --deployment-config-name CodeDeployDefault.AllAtOnce \
             --deployment-group-name csye6225-webapp-deployment \
-            --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=artifacts/csye6225-webapp-${}CIRCLE_BUILD_NUM}.zip --region us-east-1
+            --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=artifacts/csye6225-webapp-${CIRCLE_BUILD_NUM}.zip --region us-east-1
         
 
 workflows:
