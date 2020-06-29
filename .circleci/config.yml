@@ -78,7 +78,6 @@ jobs:
             
             aws deploy create-deployment \
             --application-name csye6225-webapp \
-            --deployment-config-name CodeDeployDefault.AllAtOnce \
             --deployment-group-name csye6225-webapp-deployment \
             --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=artifacts/csye6225-webapp-${CIRCLE_BUILD_NUM}.zip --region us-east-1
         
