@@ -1,6 +1,6 @@
-#Network Structures and Cloud Computing
+# Network Structures and Cloud Computing
 
-# Assignment 3 
+# Assignment 6 
 Assignment 3 - BookStore Management Ecommerce website
 
 ## Running the project: 
