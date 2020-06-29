@@ -36,43 +36,51 @@ jobs:
           name: Installing wget
           command: 'sudo apt-get install wget zip unzip'
       - run:
+          name: Install node dependencies 
+          command: | 
+            npm install 
+      - run:
           name: Installing aws cli
           command: | 
             sudo apt-get install python-pip  
             sudo pip install awscli
-      - run: 
-          name: Install node modules with npm
-          command: npm install
-          -save-cache: 
-              key: dependency-cache-{{ checksum "package.json" }}
-              paths: 
-                ./ui/node_modules
       - run:
-          name: Build Application
+          name: Install less
           command: |
-            cd ui
-            yes | sudo npm install -g @angular/cli
-            npm install
-            ng build
+            echo "Install less dependency"
+            sudo apt-get update
+            sudo apt-get install less -y
       - run:
           name: Build Deployment Artifact
           command:  |
-            mkdir codedeploy_artifact
-            zip -r webapp.zip codedeploy/*.sh appspec.yml
+            mkdir -p codedeploy_artifact
+            cd project
+            echo RDS_HOSTNAME = $RDS_HOSTNAME > rds.txt
+            zip -r webapp-${}CIRCLE_BUILD_NUM}.zip *
             pwd
             ls -al
-            mv webapp.zip codedeploy_artifact/
+            mv webapp-${}CIRCLE_BUILD_NUM}.zip  ~/codedeploy_artifact/
             ls -al
             pwd
-            cd codedeploy_artifact
+            cd ~/codedeploy_artifact
             ls -al
-      #- run: 
-       #   name: Copy artifact to S3
-        #  command: 
-      #- run: 
-       #   name: CodeDeploy API call
-        #  command: 
-
+      - run: 
+          name: Copy artifact to S3
+          command: |
+            aws s3 cp /home/circleci/codedeploy_artifact/csye6225-webapp-${}CIRCLE_BUILD_NUM}.zip s3://${S3_BUCKET_NAME}
+      - run: 
+          name: CodeDeploy API call
+          command: |
+            aws deploy register-application-revision \
+              --application-name csye6225-webapp \
+              --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=csye6225-webapp-${}CIRCLE_BUILD_NUM}.zip --region us-east-1
+            
+            aws deploy create-deployment \
+            --application-name csye6225-webapp \
+            --deployment-config-name CodeDeployDefault.AllAtOnce \
+            --deployment-group-name csye6225-webapp-deployment \
+            --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=artifacts/csye6225-webapp-${}CIRCLE_BUILD_NUM}.zip --region us-east-1
+        
 
 workflows:
   version: 2
