@@ -2,14 +2,22 @@ version: 0.0
 os: linux
 
 files:
-  - source: ./
-    destination: /home/ubuntu
+  - source: /
+    destination: /home/ubuntu/webapp
 
 hooks:
+  ApplicationStop:
+    - location: ./codedeploy/applicationStop.sh
+      timeout: 300
+
   AfterInstall:
-    - location: ./afterInstall.sh
+    - location: ./codedeploy/afterInstall.sh
       timeout: 300
 
   ApplicationStart:
-    - location: ./applicationStart.sh
+    - location: ./codedeploy/applicationStart.sh
+      timeout: 300
+
+  BeforeInstall:
+    - location: ./codedeploy/beforeInstall.sh
       timeout: 300
