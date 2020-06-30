@@ -55,5 +55,9 @@ export class CartComponent implements OnInit {
       console.log(this.deletedItemsList);
     })
   }*/ 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
 
 }
