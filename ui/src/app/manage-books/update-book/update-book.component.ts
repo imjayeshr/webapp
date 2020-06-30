@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class UpdateBookComponent implements OnInit {
   
   id: string
-  book: Books
+  book : Books
   isbn: string
   title: string
   authors: string
@@ -39,6 +39,15 @@ export class UpdateBookComponent implements OnInit {
   }
 
 
+  /*updateBook(){
+    this.bookService.updateBook(this.book.isbn, this.book.title, this.book.authors, this.book.price, this.book.quantity, this.id)
+      .subscribe(result => {
+        alert("Book updated");
+        console.log(result);
+        this.router.navigate(['/books/manage']);
+      })
+  }*/ 
+  
   updateBook(){
     this.bookService.updateBook(this.isbn, this.title, this.authors, this.price, this.quantity, this.id)
       .subscribe(result => {
@@ -46,6 +55,7 @@ export class UpdateBookComponent implements OnInit {
         console.log(result);
         this.router.navigate(['/books/manage']);
       })
+
   }
 
 }

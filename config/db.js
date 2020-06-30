@@ -5,10 +5,11 @@ const fs = require('fs');
 let seq;
 const DIALECT = 'mysql';
 
-console.log("env is", process.env.RDS_HOSTNAME);
-
+console.log("Database hsotname is : ", process.env.RDS_HOSTNAME);
+console.log("connecting using"+ process.env.RDS_PASSWORD + process.env.RDS_USERNAME + process.env.RDS_HOSTNAME);
 if (process.env.APPLICATION_ENV === 'prod') {
-    seq = new Sequelize('csye6225', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
+
+  seq = new Sequelize('ecommerce', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
         host: process.env.RDS_HOSTNAME,
         dialect: 'mysql'
     })
