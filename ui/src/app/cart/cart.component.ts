@@ -24,13 +24,14 @@ export class CartComponent implements OnInit {
       console.log(this.cartList);
     })
 
-    this.getDeletedItems();
+    //this.getDeletedItems();
   }
 
   removeItem(itemId: string){
-    alert(`id is ${itemId}`);
+    //alert(`id is ${itemId}`);
     this.cartService.deleteFromCart(itemId).subscribe(result => {
       console.log(result);
+      location.reload();
     })
   }
 
@@ -39,17 +40,18 @@ export class CartComponent implements OnInit {
     alert(`new quantity ${newQuantity}`)
     this.cartService.updateCart(itemId, bookId, newQuantity).subscribe(result => {
       console.log(result);
+      location.reload();
       //this.router.navigate(['/home']);
     })
   }
 
-  getDeletedItems(){
-    this.cartService.getDeletedItems().subscribe(result => {
-      for (let x in result) {
-        this.deletedItemsList.push(result[x])
-      }
-      console.log(this.deletedItemsList);
-    })
-  }
+  // getDeletedItems(){
+  //   this.cartService.getDeletedItems().subscribe(result => {
+  //     for (let x in result) {
+  //       this.deletedItemsList.push(result[x])
+  //     }
+  //     console.log(this.deletedItemsList);
+  //   })
+  // }
 
 }

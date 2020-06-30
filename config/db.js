@@ -8,7 +8,7 @@ const DIALECT = 'mysql';
 console.log("env is", process.env.RDS_HOSTNAME);
 
 if (process.env.APPLICATION_ENV === 'prod') {
-    seq = new Sequelize('ecommerce', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
+    seq = new Sequelize('csye6225', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
         host: process.env.RDS_HOSTNAME,
         dialect: 'mysql'
     })

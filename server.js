@@ -5,8 +5,22 @@ const express = require("express"),
   db = require("./config/db");
   cors = require("cors");
   s3 = require("./config/s3")
-  
+  emptydb = require("./config/database2");
+
 console.log("Current environment is " + process.env.APPLICATION_ENV);
+
+
+emptydb.query("CREATE DATABASE IF NOT EXISTS csye6225;")
+    .then(data => {
+        db.sync({ alter: true })
+            .then(() => {
+                console.log("DB & Tables synced!")
+
+                db.authenticate()
+                    .then(() => console.log('Connected to the MySQl database!'))
+                    .catch(err => console.log('error: ' + err))
+            })
+    });
 
 //Adding body parser for handling request and response objects.
 app.use(
