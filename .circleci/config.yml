@@ -44,7 +44,7 @@ jobs:
             cd ~/
             mkdir -p codedeploy_artifact
             cd project
-            echo RDS_HOSTNAME = $RDS_HOSTNAME > rds.txt
+            echo RDS_HOSTNAME=$RDS_HOSTNAME > rds.txt
             zip -r csye6225-webapp-${CIRCLE_BUILD_NUM}.zip *
             pwd
             ls -al
