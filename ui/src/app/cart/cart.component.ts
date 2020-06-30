@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 
 
 export class CartComponent implements OnInit {
-  cartList = Array();
+  cartList = [];
   deletedItemsList = Array(); 
 
   constructor(private cartService: CartService, private router:Router) { }
@@ -20,8 +20,9 @@ export class CartComponent implements OnInit {
       
       for (let x in result) {
         this.cartList.push(result[x])
+        console.log(result[x])
       }
-      console.log(this.cartList);
+      console.log("this is the cartlist", this.cartList);
     })
 
     //this.getDeletedItems();
@@ -43,15 +44,16 @@ export class CartComponent implements OnInit {
       location.reload();
       //this.router.navigate(['/home']);
     })
+    
   }
 
-  // getDeletedItems(){
-  //   this.cartService.getDeletedItems().subscribe(result => {
-  //     for (let x in result) {
-  //       this.deletedItemsList.push(result[x])
-  //     }
-  //     console.log(this.deletedItemsList);
-  //   })
-  // }
+  /*getDeletedItems(){
+    this.cartService.getDeletedItems().subscribe(result => {
+      for (let x in result) {
+        this.deletedItemsList.push(result[x])
+      }
+      console.log(this.deletedItemsList);
+    })
+  }*/ 
 
 }

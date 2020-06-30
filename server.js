@@ -5,12 +5,12 @@ const express = require("express"),
   db = require("./config/db");
   cors = require("cors");
   s3 = require("./config/s3")
-  emptydb = require("./config/database2");
+  //emptydb = require("./config/database2");
 
 console.log("Current environment is " + process.env.APPLICATION_ENV);
 
 
-emptydb.query("CREATE DATABASE IF NOT EXISTS csye6225;")
+/*emptydb.query("CREATE DATABASE IF NOT EXISTS ecommerce;")
     .then(data => {
         db.sync({ alter: true })
             .then(() => {
@@ -21,6 +21,7 @@ emptydb.query("CREATE DATABASE IF NOT EXISTS csye6225;")
                     .catch(err => console.log('error: ' + err))
             })
     });
+*/ 
 
 //Adding body parser for handling request and response objects.
 app.use(
@@ -45,6 +46,7 @@ app.use(function (req, res, next) {
 
   next();
 });
+
 
 
 //Initialize the app

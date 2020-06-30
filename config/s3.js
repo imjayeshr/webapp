@@ -19,7 +19,7 @@ aws.config.getCredentials(function(err) {
     }
   });
 
-
+// Upload the file/files to the S3 bucket 
 upload = multer({
         storage: multerS3({
             s3: s3,

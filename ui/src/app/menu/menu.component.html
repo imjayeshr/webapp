@@ -1,16 +1,16 @@
-<mat-toolbar color="accent">
+<mat-toolbar color="primary">
 
 
         <button mat-fab color="accent" aria-label="Example icon button with a home icon">
-          <mat-icon>home</mat-icon>
+          <a [routerLink] = "['/books']"><mat-icon>home</mat-icon></a>
         </button>
-    <span>Welcome to Book Store</span>
+    <span>Welcome to Bookstore...!!</span>
     <span class="example-spacer"></span>
 <div *ngIf = "loggedIn">
   <button mat-raised-button color="accent"  [matMenuTriggerFor]="belowMenu">My Books</button>
 <mat-menu #belowMenu="matMenu" yPosition="below">
   <a [routerLink] = "['/books/add']"><button mat-menu-item>Add Book</button></a>
-  <a [routerLink] = "['/books/manage']"><button mat-menu-item> Manage Books </button></a>
+  <a [routerLink] = "['/books/manage']"><button mat-menu-item> Manage Book</button></a>
 </mat-menu>
     <!-- Buyer/Seller buttons -->
 
@@ -23,6 +23,6 @@
       <a [routerLink] = "['/signin']"><button class="btn" mat-raised-button color="accent">Log in</button></a>
     <a [routerLink] = "['/signup']"><button class="btn" mat-raised-button color="accent">Sign up</button></a>
     </div>
-    <button *ngIf = "loggedIn" (click)="logout()" class="btn" mat-raised-button color="accent">Sign Out</button>
+    <button *ngIf = "loggedIn" (click)="logout()" class="btn" mat-raised-button color="accent">Log Out</button>
     
 </mat-toolbar>
