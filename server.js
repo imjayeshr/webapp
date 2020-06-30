@@ -11,7 +11,14 @@ console.log("Current environment is " + process.env.APPLICATION_ENV);
 
 
 /*emptydb.query("CREATE DATABASE IF NOT EXISTS ecommerce;")
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
     .then(data => {
         db.sync({ alter: true })
             .then(() => {
@@ -23,8 +30,15 @@ console.log("Current environment is " + process.env.APPLICATION_ENV);
             })
     });
 */ 
+<<<<<<< HEAD
+=======
 
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
 //Adding body parser for handling request and response objects.
 app.use(
   bodyParser.urlencoded({
