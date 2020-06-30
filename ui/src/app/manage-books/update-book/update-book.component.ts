@@ -20,10 +20,14 @@ export class UpdateBookComponent implements OnInit {
   price: number
   quantity: number
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 =======
 
 >>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
   constructor(private route: ActivatedRoute, private bookService: BooksService, private router:Router) { }
 
   ngOnInit(): void {
@@ -43,9 +47,13 @@ export class UpdateBookComponent implements OnInit {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
   /*updateBook(){
     this.bookService.updateBook(this.book.isbn, this.book.title, this.book.authors, this.book.price, this.book.quantity, this.id)
       .subscribe(result => {
@@ -63,9 +71,13 @@ export class UpdateBookComponent implements OnInit {
         this.router.navigate(['/books/manage']);
       })
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
   }
 
 }
