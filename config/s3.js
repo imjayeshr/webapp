@@ -4,7 +4,7 @@ const multerS3 = require('multer-s3');
 var path = require('path');
 const aws = require('aws-sdk');
 let s3 = new aws.S3({
-
+  "signatureVersion":"v4"
 });
 
 let bucket = process.env.AWS_BUCKET_NAME;
@@ -18,8 +18,8 @@ aws.config.getCredentials(function(err) {
       console.log("Access key:", aws.config.credentials.accessKeyId);
     }
   });
-  
 
+// Upload the file/files to the S3 bucket 
 upload = multer({
         storage: multerS3({
             s3: s3,

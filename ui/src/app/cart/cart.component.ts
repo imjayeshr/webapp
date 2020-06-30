@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 
 
 export class CartComponent implements OnInit {
-  cartList = Array();
+  cartList = [];
   deletedItemsList = Array(); 
 
   constructor(private cartService: CartService, private router:Router) { }
@@ -20,17 +20,19 @@ export class CartComponent implements OnInit {
       
       for (let x in result) {
         this.cartList.push(result[x])
+        console.log(result[x])
       }
-      console.log(this.cartList);
+      console.log("this is the cartlist", this.cartList);
     })
 
-    this.getDeletedItems();
+    //this.getDeletedItems();
   }
 
   removeItem(itemId: string){
-    alert(`id is ${itemId}`);
+    //alert(`id is ${itemId}`);
     this.cartService.deleteFromCart(itemId).subscribe(result => {
       console.log(result);
+      location.reload();
     })
   }
 
@@ -39,17 +41,27 @@ export class CartComponent implements OnInit {
     alert(`new quantity ${newQuantity}`)
     this.cartService.updateCart(itemId, bookId, newQuantity).subscribe(result => {
       console.log(result);
+      location.reload();
       //this.router.navigate(['/home']);
     })
+    
   }
 
-  getDeletedItems(){
+  /*getDeletedItems(){
     this.cartService.getDeletedItems().subscribe(result => {
       for (let x in result) {
         this.deletedItemsList.push(result[x])
       }
       console.log(this.deletedItemsList);
     })
-  }
+  }*/ 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
 
 }

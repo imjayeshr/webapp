@@ -1,6 +1,6 @@
 <div class="container">
+    <h3>Add a new book</h3>
     <form (ngSubmit)="submitBook()" #bookForm="ngForm">
-      <h2>Add a new book</h2>
         <div class="form-group">
             <label for="isbn">ISBN</label>
             <input type="text" class="form-control" id="isbn"
@@ -33,7 +33,7 @@
             <label for="quantity">Quantity</label>
             <input type="number" min="0" max="999" class="form-control" id="quantity" required
                    [(ngModel)]="quantity" name="quantity">
-          </div>
+          </div><br>
           <!-- <div class="form-group">
             <label for="quantity">Upload Image</label>
             <input #image id="imageInput" class="inputfile" type="file" accept="image/*" (change)="fileChangeEvent($event)"/>

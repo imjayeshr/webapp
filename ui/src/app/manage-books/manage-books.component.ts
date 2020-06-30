@@ -37,8 +37,8 @@ export class ManageBooksComponent implements OnInit {
         this.booksService.deleteBook(bookId)
         .subscribe(response => {
           alert("Book deleted");
-          this.router.navigate(['/books'])
-          console.log(response);
+          console.log("response from deletion", response);
+          this.router.navigate(['/books'])          
         })   
       }       
     }

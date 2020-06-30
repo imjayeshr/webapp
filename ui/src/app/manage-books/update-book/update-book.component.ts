@@ -12,26 +12,72 @@ import {Router} from '@angular/router';
 export class UpdateBookComponent implements OnInit {
   
   id: string
-  book: Books
+  book : Books
+  isbn: string
+  title: string
+  authors: string
+  publication_date: string
+  price: number
+  quantity: number
+<<<<<<< HEAD
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
   constructor(private route: ActivatedRoute, private bookService: BooksService, private router:Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.bookId; 
     this.bookService.getSpecificBook(this.id).subscribe(result => {
-      this.book = result[0];
+      console.log("received from back", result);
+      this.book = result;
+      this.isbn = result.isbn
+      this.title = result.title
+      this.authors = result.authors
+      this.publication_date = "123"
+      this.price = result.price
+      this.quantity = result.quantity
+
       console.log("Book object now is : ", this.book)
     })
   }
 
-  updateBook(){
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
+  /*updateBook(){
     this.bookService.updateBook(this.book.isbn, this.book.title, this.book.authors, this.book.price, this.book.quantity, this.id)
       .subscribe(result => {
         alert("Book updated");
         console.log(result);
         this.router.navigate(['/books/manage']);
       })
-  }
+  }*/ 
   
+  updateBook(){
+    this.bookService.updateBook(this.isbn, this.title, this.authors, this.price, this.quantity, this.id)
+      .subscribe(result => {
+        alert("Book updated");
+        console.log(result);
+        this.router.navigate(['/books/manage']);
+      })
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 829ccdd4e3d8c0431b2be0757b6877cc4790cfcd
+=======
+
+>>>>>>> cc0c77537c368631c5abe29bdf272fd94e8a7ae2
+  }
 
 }
