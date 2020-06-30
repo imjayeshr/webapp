@@ -19,7 +19,7 @@ export class UpdateBookComponent implements OnInit {
   publication_date: string
   price: number
   quantity: number
-  
+
   constructor(private route: ActivatedRoute, private bookService: BooksService, private router:Router) { }
 
   ngOnInit(): void {
@@ -38,6 +38,7 @@ export class UpdateBookComponent implements OnInit {
     })
   }
 
+
   /*updateBook(){
     this.bookService.updateBook(this.book.isbn, this.book.title, this.book.authors, this.book.price, this.book.quantity, this.id)
       .subscribe(result => {
@@ -54,6 +55,7 @@ export class UpdateBookComponent implements OnInit {
         console.log(result);
         this.router.navigate(['/books/manage']);
       })
+
   }
 
 }
