@@ -169,7 +169,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     AccountInfoComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: AccountInfoComponent,
       selectors: [["app-account-info"]],
-      decls: 36,
+      decls: 37,
       vars: 7,
       consts: [[1, "accountContainer"], [1, "form-group"], ["type", "text", "required", "", "name", "firstname", "placeholder", "Enter firstname", "required", "", "minlength", "5", "maxlength", "40", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "required", "", "name", "lastname", "placeholder", "Enter lastname", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "button", 3, "click"], ["type", "password", "required", "", "name", "oldpassword", "placeholder", "Enter current password", "required", "", "minlength", "5", "maxlength", "40", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "required", "", "name", "newpassword", "placeholder", "Enter new password", 1, "form-control", 3, "ngModel", "ngModelChange"]],
       template: function AccountInfoComponent_Template(rf, ctx) {
@@ -302,11 +302,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](35, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
@@ -657,7 +659,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       },
       directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgForm"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NumberValueAccessor"]],
-      styles: [".container[_ngcontent-%COMP%] {\n  margin-top: 30px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.form-group[_ngcontent-%COMP%] {\n  width: 500px;\n  clear: both;\n}\n\n.form-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  clear: both;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2pheWVzaC9jc3llNjIyNS9Bc3NpZ25tZW50IDYvd2ViYXBwL3VpL3NyYy9hcHAvYWRkLWJvb2svYWRkLWJvb2suY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FkZC1ib29rL2FkZC1ib29rLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtBQ0NKOztBRENBO0VBQ0ksWUFBQTtFQUNBLFdBQUE7QUNFSjs7QURDRTtFQUNFLFdBQUE7RUFDQSxXQUFBO0FDRUoiLCJmaWxlIjoic3JjL2FwcC9hZGQtYm9vay9hZGQtYm9vay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXIge1xuICAgIG1hcmdpbi10b3A6IDMwcHg7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmZvcm0tZ3JvdXAge1xuICAgIHdpZHRoOiA1MDBweDtcbiAgICBjbGVhcjogYm90aDtcbiAgfVxuICBcbiAgLmZvcm0tZ3JvdXAgaW5wdXQge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGNsZWFyOiBib3RoO1xuICB9IiwiLmNvbnRhaW5lciB7XG4gIG1hcmdpbi10b3A6IDMwcHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4uZm9ybS1ncm91cCB7XG4gIHdpZHRoOiA1MDBweDtcbiAgY2xlYXI6IGJvdGg7XG59XG5cbi5mb3JtLWdyb3VwIGlucHV0IHtcbiAgd2lkdGg6IDEwMCU7XG4gIGNsZWFyOiBib3RoO1xufSJdfQ== */"]
+      styles: [".container[_ngcontent-%COMP%] {\n  margin-top: 30px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.form-group[_ngcontent-%COMP%] {\n  width: 500px;\n  clear: both;\n}\n\n.form-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  clear: both;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2pheWVzaC9jc3llNjIyNS9Bc3NpZ25tZW50IDYvd2ViYXBwL3VpL3NyYy9hcHAvYWRkLWJvb2svYWRkLWJvb2suY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FkZC1ib29rL2FkZC1ib29rLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtBQ0NKOztBREVBO0VBQ0ksWUFBQTtFQUNBLFdBQUE7QUNDSjs7QURFRTtFQUNFLFdBQUE7RUFDQSxXQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9hZGQtYm9vay9hZGQtYm9vay5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXIge1xuICAgIG1hcmdpbi10b3A6IDMwcHg7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4uZm9ybS1ncm91cCB7XG4gICAgd2lkdGg6IDUwMHB4O1xuICAgIGNsZWFyOiBib3RoO1xuICB9XG4gIFxuICAuZm9ybS1ncm91cCBpbnB1dCB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgY2xlYXI6IGJvdGg7XG4gIH0iLCIuY29udGFpbmVyIHtcbiAgbWFyZ2luLXRvcDogMzBweDtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5mb3JtLWdyb3VwIHtcbiAgd2lkdGg6IDUwMHB4O1xuICBjbGVhcjogYm90aDtcbn1cblxuLmZvcm0tZ3JvdXAgaW5wdXQge1xuICB3aWR0aDogMTAwJTtcbiAgY2xlYXI6IGJvdGg7XG59Il19 */"]
     });
     /*@__PURE__*/
 
@@ -2975,7 +2977,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "button", 9);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, " Manage Book");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, " Manage Books ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -3160,7 +3162,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       selectors: [["app-menu"]],
       decls: 11,
       vars: 5,
-      consts: [["color", "primary"], ["mat-fab", "", "color", "accent", "aria-label", "Example icon button with a home icon"], [3, "routerLink"], [1, "example-spacer"], [4, "ngIf"], ["class", "btn", "mat-raised-button", "", "color", "accent", 3, "click", 4, "ngIf"], ["mat-raised-button", "", "color", "accent", 3, "matMenuTriggerFor"], ["yPosition", "below"], ["belowMenu", "matMenu"], ["mat-menu-item", ""], ["mat-raised-button", "", "color", "accent", 1, "btn"], ["mat-raised-button", "", "color", "accent", 1, "btn", 3, "click"]],
+      consts: [["color", "accent"], ["mat-fab", "", "color", "accent", "aria-label", "Example icon button with a home icon"], [3, "routerLink"], [1, "example-spacer"], [4, "ngIf"], ["class", "btn", "mat-raised-button", "", "color", "accent", 3, "click", 4, "ngIf"], ["mat-raised-button", "", "color", "accent", 3, "matMenuTriggerFor"], ["yPosition", "below"], ["belowMenu", "matMenu"], ["mat-menu-item", ""], ["mat-raised-button", "", "color", "accent", 1, "btn"], ["mat-raised-button", "", "color", "accent", 1, "btn", 3, "click"]],
       template: function MenuComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-toolbar", 0);
@@ -4157,7 +4159,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     SignupComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: SignupComponent,
       selectors: [["app-signup"]],
-      decls: 26,
+      decls: 27,
       vars: 5,
       consts: [[1, "background"], [1, "container"], [1, "row"], [2, "text-align", "center"], [2, "width", "30%", "margin", "25px auto"], ["action", "/signup", "method", "post"], [1, "form-group"], ["name", "email", "required", "", "name", "account", "placeholder", "Enter e-mail", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "required", "", "name", "userName", "placeholder", "Firstname", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "text", "required", "", "name", "lastName", "placeholder", "Lastname", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "required", "", "name", "password", "placeholder", "Password", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "password", "required", "", "name", "password", "placeholder", "Confirm Password", 1, "form-control", 3, "ngModel", "ngModelChange"], [1, "b", 3, "click"]],
       template: function SignupComponent_Template(rf, ctx) {
@@ -4263,6 +4265,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](26, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
