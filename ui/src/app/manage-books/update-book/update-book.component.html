@@ -5,35 +5,35 @@
             <label for="isbn">ISBN</label>
             <input type="text" class="form-control" id="isbn"
                    required
-                   [(ngModel)]="book.isbn" name="isbn">
-          </div>
+                   [(ngModel)]="isbn" name="isbn">
+          </div><br>
           
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text"  class="form-control" id="title"
                     required
-                   [(ngModel)]="book.title" name="title">
-          </div>
+                   [(ngModel)]="title" name="title">
+          </div><br>
 
           <div class="form-group">
             <label for="authors">Authors</label>
             <input type="text"  class="form-control" id="authors"
             required
-                   [(ngModel)]="book.authors" name="authors">
-          </div>
+                   [(ngModel)]="authors" name="authors">
+          </div><br>
 
           <div class="form-group">
             <label for="price">Price</label>
             <input type="number" step="0.01" min="0.01" max="9999.99"  class="form-control" id="price"
             required
-                   [(ngModel)]="book.price" name="price">
-          </div>
+                   [(ngModel)]="price" name="price">
+          </div><br>
 
           <div class="form-group">
             <label for="quantity">Quantity</label>
             <input type="number" min="0" max="999" class="form-control" id="quantity" required
-                   [(ngModel)]="book.quantity" name="quantity">
-          </div>
+                   [(ngModel)]="quantity" name="quantity">
+          </div><br>
 
           <button type="submit" class="btn btn-primary" [disabled]="!bookForm.form.valid">Submit</button>
           

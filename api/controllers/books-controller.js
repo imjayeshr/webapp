@@ -80,8 +80,9 @@ exports.deleteImage = (req,res) => {
   let updatedImageString = req.body.updatedImageString; 
 
   let imageUrl = req.body.imageUrl; 
-  imageUrl = imageUrl.replace("https://bookstore-webapp.s3.amazonaws.com/","");
-  console.log("Deleting b=object with key", imageUrl);
+  //imageUrl = imageUrl.replace("https://"+ process.env.AWS_BUCKET_NAME + ".s3.amazonaws.com/","");
+  imageUrl = imageUrl.substring(imageUrl.length - 17, imageUrl.length)
+  console.log("Deleting object with key", imageUrl);
 
   s3.s3.deleteObject({
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -97,7 +98,7 @@ exports.deleteImage = (req,res) => {
       })
     }
     else {
-      res.send(err)
+      res.send(data)
     }    
   })
 
@@ -106,14 +107,58 @@ exports.deleteImage = (req,res) => {
 // To delete a book/item 
 exports.deleteBook = (req, res) => {
   let bookId = req.params.id;
-  Book.destroy({where: {id: bookId}})
+  console.log("Will deletebook ", bookId);
+  let objects = [];
+  
+  Book.findOne({where:{
+    id:bookId
+  }})
+    .then((book)=>{
+      
+      var tempObjects = book.images.split(';');
+      console.log(tempObjects);
+      for (let o in tempObjects){
+        
+        let obj = tempObjects[o];
+        obj = obj.substring(obj.length - 17, obj.length)
+        console.log(obj);
+        var map = {
+          "Key" : obj
+        }
+        objects.push(map);
+      }      
+    })
+    .then(()=>{
+      
+      console.log("objects is ", objects)
+      var params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Delete: {
+          Objects: objects
+        }
+      }
+
+      s3.s3.deleteObjects(params, function(err, data){
+          if(data){
+              console.log("File success", data);
+          } else {
+              console.log("Check with error message " + err);
+          }
+      })        
+    })
+    .then(()=>{
+      Book.destroy({where: {id: bookId}})
     .then(result=>{
-      res.send("Deleted");
+      res.status(200).json("Deleted");
     })
     .catch(error=>{
-      res.send("Error deleting");
+      res.status(200).json("Error deleting");
     })
-
+    })
+    .catch((error)=>{
+      res.send(error);
+    })
+  
 }
 
 // To get specific book details 
@@ -158,8 +203,8 @@ async function insertIntoBufferCart(user){
 exports.testnew = (req,res) => {
   aws.config.setPromisesDependency();
     aws.config.update({
-      accessKeyId: "AKIAQ3SZUITGTIBZATQW",
-      secretAccessKey: "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",
+      accessKeyId: "",
+      secretAccessKey: "",
       region: "us-east-1"
     });
     const s3 = new aws.S3();

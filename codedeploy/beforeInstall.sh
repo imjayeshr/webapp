@@ -1,1 +1,2 @@
-sudo chmod 777 demo
+echo "before install files is getting executed"
+rm -rf /home/ubuntu/webapp

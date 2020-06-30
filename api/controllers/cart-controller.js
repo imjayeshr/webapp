@@ -8,7 +8,7 @@ const Book = require('../models/book');
 exports.getItems = (req, res) => {
   var userId= req.params.id;
   console.log("Getting for user", userId);
-  Cart.findAll({where:{user_id:userId}})
+  Cart.findAll({where:{user_id:userId}, include: Book})
     .then((result)=>{
       res.send(result);
     })
@@ -23,26 +23,70 @@ exports.addItem = (req, res) => {
     var userId = req.params.id;
     var quantity = req.body.quantity;
     var cost; 
-    var price; 
+    var price;
+    var oldquantity; 
+    var cartid; 
 
-    Book.findOne({where:{id:bookId}})
-      .then((book)=>{
-        price = book.price;
-      })
-      .then(()=>{
-        cost = price * quantity
-      })
-      .then(()=>
-        {
-          Cart.create({book_id: bookId, user_id:userId, quantity, cost})
-            .then((result)=>{
-              res.status(200).json(result);
-            })
-            .catch((error)=>{
-              res.status(400);
-            })
+    var duplicate = false; 
+
+    //Check if item already exists in the cart table 
+    Cart.findOne({where: {book_id : bookId, user_id:userId}})
+      .then((item)=>{
+        if(item==null || item==undefined){
+          console.log("Item is", item)
         }
-      )
+        else {
+          duplicate = true
+          cartid = item.id;
+          oldquantity = item.quantity;
+        }
+      })
+    .then(()=>{
+      if(duplicate == false){
+        Book.findOne({where:{id:bookId}})
+        .then((book)=>{        
+          price = book.price;
+        })
+        .then(()=>{
+          cost = price * quantity
+        })
+        .then(()=>
+          {
+            Cart.create({book_id: bookId, user_id:userId, quantity, cost})
+              .then((result)=>{
+                res.status(200).json(result);
+              })
+              .catch((error)=>{
+                res.status(400);
+              })
+          }
+        )
+      }
+      else {
+        Book.findOne({where:{id:bookId}})
+        .then((book)=>{
+          price = book.price;
+        })
+        .then(()=>{
+          quantity = parseInt(quantity) + parseInt(oldquantity)
+          cost = price * quantity
+          quantity = quantity.toString();          
+        })
+        .then(()=>
+          {
+            Cart.update({quantity: quantity, cost}, {where:{id:cartid}})
+              .then((result)=>{
+                res.status(200).json(result);
+              })
+              .catch((error)=>{
+                res.status(400);
+              })
+          }
+        )
+      }
+
+    })
+    
 }
 
 // to update an item 
@@ -105,5 +149,4 @@ function getItemPrice(bookId)
     })
     });
 }
-
 
