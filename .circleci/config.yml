@@ -12,18 +12,6 @@ jobs:
           name: run the unit test
           command: 'npm test' 
 
-  build:
-    docker:
-      - image: circleci/node:10.19.0
-    steps:
-      - checkout
-      - run:
-          name: Installing packages
-          command: 'npm install'
-      - run: 
-          name: run the unit test
-          command: 'npm test'
-  
   deploy:
     docker:
       - image: circleci/node:10.19.0
@@ -88,13 +76,6 @@ workflows:
     jobs:
     - pr_check
     
-  build:
-
-    jobs:
-    - build:
-        filters:
-          branches:
-            only: master
   deploy:
     jobs:
       - deploy
