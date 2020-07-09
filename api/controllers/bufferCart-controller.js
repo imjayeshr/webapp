@@ -13,6 +13,3 @@ exports.getItems = (req, res) => {
   })*/ 
 
 };
-
-
-
