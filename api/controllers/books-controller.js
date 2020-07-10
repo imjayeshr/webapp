@@ -24,6 +24,7 @@ exports.getBooks = (req, res) => {
       res.send(result)
     })
     .catch(error => {
+      logger.info("GET Book Request Failed");
       res.send(error);
     })
 };
@@ -33,9 +34,9 @@ exports.addBook = (req, res) => {
     //var images = req.file.location; 
     var rtimer = new Date();
 
-    stats.increment('Add Book Count');
+    stats.increment('POST - Add Book Count');
 
-    logger.info("Add Book Request");
+    logger.info("POST - Add Book Request");
 
     var isbn = req.body.isbn;
     var title = req.body.title;
@@ -59,8 +60,8 @@ exports.addBook = (req, res) => {
       isbn, title, authors, publication_date: publicationDate, price, quantity, user_id: userId, images: url
     })
       .then(result=>{
-        stats.timing('ADD Book Query Complete Time', timer);
-        stats.timing('ADD Book Request Complete Time', rtimer);
+        stats.timing('POST - ADD Book Query Complete Time', timer);
+        stats.timing('POST - ADD Book Request Complete Time', rtimer);
         res.status(200).json(result);
       })
       .catch(error=>{
@@ -73,9 +74,9 @@ exports.addBook = (req, res) => {
 exports.updateBook = (req, res) => {
   var rtimer = new Date();
 
-  stats.increment('UPDATE Book Count');
+  stats.increment('PUT - UPDATE Book Count');
 
-  logger.info("UPDATE Book Request");
+  logger.info("PUT - UPDATE Book Request");
 
     let bookId = req.body.bookId; 
     let isbn = req.body.isbn;
@@ -92,8 +93,8 @@ exports.updateBook = (req, res) => {
         }
       })
         .then(result=>{
-          stats.timing('UPDATE Book Query  Complete Time', timer);
-          stats.timing('UPDATE Book Request Complete Time', rtimer);
+          stats.timing('PUT - UPDATE Book Query  Complete Time', timer);
+          stats.timing('PUT - UPDATE Book Request Complete Time', rtimer);
           res.send(result);
         })
         .catch(error=>{
@@ -116,17 +117,16 @@ exports.deleteImage = (req,res) => {
   //imageUrl = imageUrl.replace("https://"+ process.env.AWS_BUCKET_NAME + ".s3.amazonaws.com/","");
   imageUrl = imageUrl.substring(imageUrl.length - 17, imageUrl.length)
   console.log("Deleting object with key", imageUrl);
-
+  var timer = new Date();
   s3.s3.deleteObject({
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: imageUrl
   }, function(err,data) {
     if(!err){
-      var timer = new Date();
-
+      stats.timing('DELETE Image from S3 Query Complete Time', timer);
       Book.update({images:updatedImageString}, {where:{id:id}})
       .then((result)=> {
-        stats.timing('DELETE Image from S3 Query Complete Time', timer);
+        
         stats.timing('DELETE Image from S3 Request Complete Time', rtimer);
         res.send(result);
       })
@@ -182,9 +182,12 @@ exports.deleteBook = (req, res) => {
           Objects: objects
         }
       }
-
+      stats.increment("DELETE  All Book Images fron S3 request");
+      logger.info("DELETE All Book Images request");
+      var s3timer = new Date();
       s3.s3.deleteObjects(params, function(err, data){
           if(data){
+            stats.timing("S3 DELETE Objects Request", s3timer);
               console.log("File success", data);
           } else {
               console.log("Check with error message " + err);
