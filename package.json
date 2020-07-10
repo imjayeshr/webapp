@@ -31,7 +31,8 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "pm2": "^4.4.0",
-    "sequelize": "^5.21.13"
+    "sequelize": "^5.21.13",
+    "statsd-client": "^0.4.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",
