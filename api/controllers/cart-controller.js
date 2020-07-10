@@ -94,6 +94,8 @@ exports.addItem = (req, res) => {
           {
             Cart.update({quantity: quantity, cost}, {where:{id:cartid}})
               .then((result)=>{
+                stats.timing('ADD to Cart Query Complete Time', timer);
+                stats.timing('ADD to Cart Request Complete Time', rtimer);
                 res.status(200).json(result);
               })
               .catch((error)=>{

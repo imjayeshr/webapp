@@ -1,0 +1,1 @@
+sudo pm2 start /home/ubuntu/webapp/server.js

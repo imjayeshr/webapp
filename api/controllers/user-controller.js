@@ -9,9 +9,9 @@ const logger = require('../../config/winston-logger');
 // Creating a new user
 exports.createNewUser = (req, res) => {
   var rtimer = new Date();
-  stats.increment('ADD User Count');
+  stats.increment('POST - ADD User Count');
 
-  logger.info("ADD User Request");
+  logger.info("POST - ADD User Request");
 
   //Container variables for new user properties 
   var email = req.body.email;
@@ -38,11 +38,11 @@ exports.createNewUser = (req, res) => {
           var timer = new Date();
           User.create({email: email, firstname: firstname, lastname: lastname, pwd:password})
             .then(result => {
-              stats.timing('ADD User Query Complete Time', timer);
-              stats.timing('ADD User Request Complete Time', rtimer);
               var rbody = {
                 "status" : "200",            
-              }; 
+              };
+              stats.timing('ADD User Query Complete Time', timer);
+              stats.timing('ADD User Request Complete Time', rtimer);
               res.json(rbody);
             })
             .catch(error => {
@@ -89,8 +89,7 @@ exports.authenticate = (req, res) => {
             // if the passwords match
             // If the function returns true, return the user object
             if (ret == true) {
-              stats.timing('AUTHENTICATE User Query Complete Time', timer);
-              stats.timing('AUTHENTICATE User Request Complete Time', rtimer);
+              
 
               console.log("Passwords match")
               // Create a new jwt for the user 
@@ -99,6 +98,8 @@ exports.authenticate = (req, res) => {
                 JWT_SECRET,
                 { expiresIn: "7200s" },
                 (err, token) => {
+                  stats.timing('AUTHENTICATE User Query Complete Time', timer);
+                  stats.timing('AUTHENTICATE User Request Complete Time', rtimer);
                   // Return the user object along with the JSON token
                   //console.log("Sending token: ", token);
                   res.status(200).json({
