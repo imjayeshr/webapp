@@ -2,11 +2,17 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../../config/config");
 const User = require("../models/user")
-
+const statsClient = require('statsd-client');
+const stats = new statsClient({host: 'localhost', port: 8125});
+const logger = require('../../config/winston-logger');
 
 // Creating a new user
 exports.createNewUser = (req, res) => {
-  
+  var rtimer = new Date();
+  stats.increment('POST - ADD User Count');
+
+  logger.info("POST - ADD User Request");
+
   //Container variables for new user properties 
   var email = req.body.email;
   var firstname = req.body.firstname;
@@ -29,12 +35,14 @@ exports.createNewUser = (req, res) => {
       bcrypt.hash(password, 10, function (err, hash) {
           // Assign the hash to password var
           password = hash;
-
+          var timer = new Date();
           User.create({email: email, firstname: firstname, lastname: lastname, pwd:password})
             .then(result => {
               var rbody = {
                 "status" : "200",            
-              }; 
+              };
+              stats.timing('ADD User Query Complete Time', timer);
+              stats.timing('ADD User Request Complete Time', rtimer);
               res.json(rbody);
             })
             .catch(error => {
@@ -52,10 +60,15 @@ exports.createNewUser = (req, res) => {
 
 // To authenticate the user
 exports.authenticate = (req, res) => {
-    
+  var rtimer = new Date();
+  stats.increment('AUTHENTICATE User Count');
+
+  logger.info("AUTHINCATE User Request");
+  
   var email = req.body.email;
   var password = req.body.password;
 
+  var timer = new Date();
   // Check if user exists 
     User.findOne(({
       where : {
@@ -76,6 +89,8 @@ exports.authenticate = (req, res) => {
             // if the passwords match
             // If the function returns true, return the user object
             if (ret == true) {
+              
+
               console.log("Passwords match")
               // Create a new jwt for the user 
               jwt.sign(
@@ -83,6 +98,8 @@ exports.authenticate = (req, res) => {
                 JWT_SECRET,
                 { expiresIn: "7200s" },
                 (err, token) => {
+                  stats.timing('AUTHENTICATE User Query Complete Time', timer);
+                  stats.timing('AUTHENTICATE User Request Complete Time', rtimer);
                   // Return the user object along with the JSON token
                   //console.log("Sending token: ", token);
                   res.status(200).json({
