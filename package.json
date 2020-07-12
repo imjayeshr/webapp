@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/vedant1995/webapp#readme",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "aws-sdk": "^2.700.0",
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
@@ -31,7 +32,9 @@
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
     "pm2": "^4.4.0",
-    "sequelize": "^5.21.13"
+    "sequelize": "^5.21.13",
+    "statsd-client": "^0.4.5",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
