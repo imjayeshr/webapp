@@ -55,7 +55,7 @@ export class UsersService {
         'Authorization': bearer
       })
     };
-    return this.http.get(this.requestUrl + '/users/' + email, httpOptions);
+    return this.http.get(this.requestUrl + '/users/email/' + email, httpOptions);
   }
 
   UpdateInfo(email:string, firstname:string, lastname: string) {
