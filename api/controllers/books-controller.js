@@ -287,8 +287,13 @@ exports.addImage = (req, res) => {
   stats.increment('ADD Images to Book Count');
 
   logger.info("ADD Images to Book Request");
-
-  images = images + ";" + url; 
+  if(images==""){
+    images = url
+  }
+  else {
+    console.log("image listis not empty");
+    images = images + ";" + url; 
+  }
   var timer = new Date();
   Book.update({
      images: images
@@ -296,6 +301,37 @@ exports.addImage = (req, res) => {
     .then(result=>{
       stats.timing('ADD Images to Book Query Complete Time', timer);
       stats.timing('ADD Images to Book Request Complete Time', rtimer);
+      res.status(200).json(result);
+    })
+    .catch(error=>{
+      res.status(400);
+    })
+
+}
+
+// To add a book without an image 
+exports.addBookWithoutImage = (req, res) => {
+  //var images = req.file.location; 
+  
+  var abtimer = new Date();
+  stats.increment("POST /books add new book without image request");
+  
+  var isbn = req.body.isbn;
+  var title = req.body.title;
+  var authors = req.body.authors;
+  //var publicationDate = dateFormat(now, "default");
+  var publicationDate = moment().format('YYYY-MM-DD HH:mm:ss'); 
+  var price = req.body.price;
+  var quantity = req.body.quantity;
+  var userId = req.body.userId;
+  var images = "";
+  var timer = new Date();
+  Book.create({
+    isbn, title, authors, publication_date: publicationDate, price, quantity, user_id: userId, images
+  })
+    .then(result=>{
+      stats.timing('DB request - Add new book without image time ', timer);
+      stats.timing('POST /books without image web request time', abtimer);
       res.status(200).json(result);
     })
     .catch(error=>{

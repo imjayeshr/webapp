@@ -119,3 +119,51 @@ exports.authenticate = (req, res) => {
       })
   
 };
+exports.updateUserInfo = (req, res) => {
+  
+  // Update called for a new password 
+  stats.increment("Update account info");
+  let timer = new Date();
+
+  let email = req.body.email;
+  let firstname = req.body.firstname; 
+  let lastname = req.body.lastname; 
+
+  User.update({firstname, lastname}, {
+    where : {
+      email
+    }
+  })
+    .then(result=>{
+      console.log("Updated accoutnd details");
+      stats.timing("DB request: Update account details");
+      logger.info("User account details updated");
+      res.send(result);
+    })
+    .catch(error=>{
+      res.send(error);
+    })
+};
+
+exports.readUser = (req, res) => {
+  
+  // Update called for a new password 
+  stats.increment("Get account info");
+  let timer = new Date();
+
+  let email = req.params.emailid;
+  console.log(email + "issss ");
+  
+  User.findOne({
+    where : {
+      email
+    }
+  })
+    .then(result=>{
+      stats.timing("DB request: User info requested");
+      res.send(result);
+    })
+    .catch(error=>{
+      res.send(error);
+    })
+};

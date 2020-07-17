@@ -10,15 +10,14 @@ const User = require("../models/user")
 
 module.exports = function (app) {
   //Reset the password using email
-  // app
-  //   .route("/users/:email")
-  //   .get(authChecker, userController.readUser)
+  app.route("/users/email/:emailid")
+    .get(authChecker, userController.readUser)
 
   // app.route("/users/settings/password")
   //   .put(authChecker,userController.updatePassword)
   
-  // app.route("/users/settings/info")
-  //   .put(authChecker,userController.updateUserInfo)
+  app.route("/users/settings/info")
+    .put(authChecker,userController.updateUserInfo)
     
 
   //Create a new user

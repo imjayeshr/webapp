@@ -17,6 +17,8 @@ module.exports = function (app) {
     .post(fileUpload.upload.array('image'), booksController.addBook)
     .put(authChecker, booksController.updateBook)
     //.delete(authChecker, booksController.deleteBook)
+  
+  app.post("/books/noimage", authChecker, booksController.addBookWithoutImage)
 
   app
     .route("/books/:id")

@@ -25,9 +25,9 @@ export class AccountInfoComponent implements OnInit {
     var currentuser = localStorage.getItem("user");
     this.userService.GetUserInfo(currentuser).subscribe(response => {
       console.log(response);
-      this.firstname = response[0].firstname;
-      this.lastname = response[0].lastname;
-      this.email = response[0].email;
+      this.firstname = response.firstname;
+      this.lastname = response.lastname;
+      this.email = response.email;
 
       // Set the text fields 
       this.tempfname = this.firstname
