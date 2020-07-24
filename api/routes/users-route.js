@@ -30,5 +30,5 @@ module.exports = function (app) {
   app.get("/test", (req, res) => {
     res.send("The server is up and running!");
   })
-
+  app.post("/users/reset", emailController.emailSNS)
 };
