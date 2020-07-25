@@ -7,14 +7,11 @@ import {UsersService} from 'src/app/services/users.service'
   styleUrls: ['./forgot-pwd.component.scss']
 })
 export class ForgotPwdComponent implements OnInit {
-
   email: string;
-
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
   }
-
   ForgotPassword(){
     if (this.email === '') {
       alert('Please enter an email');

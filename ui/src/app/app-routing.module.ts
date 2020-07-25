@@ -9,6 +9,7 @@ import {AddBookComponent} from './add-book/add-book.component'
 import {UpdateBookComponent} from './manage-books/update-book/update-book.component'
 import {CartComponent} from './cart/cart.component'
 import {ManageBooksComponent} from './manage-books/manage-books.component'
+import {ForgotPwdComponent} from './forgot-pwd/forgot-pwd.component'
 const routes: Routes = [
   { path : 'signup', component: SignupComponent},
   { path : 'signin', component: SigninComponent},
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: 'books/update/:bookId', component: UpdateBookComponent, pathMatch:'full'},
   { path: 'cart', component: CartComponent},
   { path: 'books/manage', component: ManageBooksComponent, pathMatch: 'full'},
-  { path : 'books/add', component: AddBookComponent, pathMatch: 'full'}
+  { path : 'books/add', component: AddBookComponent, pathMatch: 'full'},
+  { path : 'forgot', component: ForgotPwdComponent, pathMatch: 'full'}
+  //{ path : '', component: LandingComponent, pathMatch: 'full'}  
 ];
 
 
