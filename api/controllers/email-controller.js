@@ -1,5 +1,5 @@
 const aws = require("aws-sdk");
-const logger = require("../../config/logger");
+const logger = require("../../config/winston-logger");
 const User = require("../models/user");
 
 var sns = new aws.SNS({
