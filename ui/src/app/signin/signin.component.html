@@ -8,15 +8,19 @@
                 <h1 class="h1">Log In</h1>
                 <!--  Div class for E-mail -->
                   <div class="form-group">
-                    <input [(ngModel)]="email" class="form-control" type="email" required name="email" placeholder="Enter E-mail"
+                    <input [(ngModel)]="email" class="form-control" maxlength="200"  type="email" required name="email" placeholder="Enter E-mail"
                       required minlength="5" maxlength="40" />
                   </div><br>
     
                   <!-- Div class for password -->
                   <div class="form-group">
-                    <input [(ngModel)]="password" class="form-control" type="password" required name="password" placeholder="Password">
+                    <input [(ngModel)]="password" class="form-control" maxlength="200" type="password" required name="password" placeholder="Password">
                   </div><br>    
-
+                  <div class="forgotpwd">
+                    <a [routerLink] = "['/forgot']">
+                      Forgot Password?
+                    </a>                    
+                  </div>
                    <!-- Div class for Login Button -->
               <div class="form-group loginBtnClass">
                 <button class="loginButton" (click)="UserLogin()">Login</button>

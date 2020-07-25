@@ -96,4 +96,18 @@ export class UsersService {
     }, httpOptions);
   }
 
+//Forgot password method 
+Forgot(email:string):Observable<any>
+{
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  return this.http.post(this.requestUrl+'/users/reset',{
+    email
+  });
+}
+
+
 }

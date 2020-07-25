@@ -30,6 +30,7 @@ import { AllBooksComponent } from './all-books/all-books.component';
 import { ManageBooksComponent } from './manage-books/manage-books.component';
 import { UpdateBookComponent } from './manage-books/update-book/update-book.component';
 import { CartComponent } from './cart/cart.component';
+import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 
 
 
@@ -54,6 +55,7 @@ const routes: Routes = [
     ManageBooksComponent,
     UpdateBookComponent,
     CartComponent,
+    ForgotPwdComponent,
   
   ],
   imports: [

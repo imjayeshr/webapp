@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="main">
+        <span id="title">
+            Forgot Password
+        </span>
+        <form>
+            <input name="email" [(ngModel)]="email" type="email" required placeholder="Email Address">
+            <div id="btndiv">
+                <button (click)="ForgotPassword()">SUBMIT</button>                
+            </div>            
+            <a [routerLink]="['/signin']"><span id="back">Back to login</span></a>
+        </form>
+    </div>    
+</div>

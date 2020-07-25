@@ -4,6 +4,7 @@
 
 "use strict";
 const userController = require("../controllers/user-controller");
+const emailController = require("../controllers/email-controller");
 const authChecker = require("../middleware/authChecker");
 //const seq = require("../../config/db");
 const User = require("../models/user")
@@ -30,5 +31,5 @@ module.exports = function (app) {
   app.get("/test", (req, res) => {
     res.send("The server is up and running!");
   })
-
+  app.post("/users/reset", emailController.emailSNS)
 };
