@@ -2,6 +2,8 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
 
+const ca = fs.readFileSync('var/rds-ca-2019-root.pem')
+
 let seq;
 const DIALECT = 'postgres';
 
@@ -11,7 +13,11 @@ if (process.env.APPLICATION_ENV === 'prod') {
   seq = new Sequelize('csye6225', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
     host: process.env.RDS_HOSTNAME,
     dialect: 'postgres' })
-
+    dialectOptions: {
+      ssl: {
+        ca: ca
+      }
+  }
     seq
     .authenticate()
     .then(() => {

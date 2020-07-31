@@ -15,7 +15,7 @@ if (process.env.APPLICATION_ENV === 'prod') {
 } else {
     seq = new Sequelize('', 'root', 'password', {
         host: 'localhost',
-        dialect: 'mysql'
+        dialect: 'postgres'
     });
 }
 
