@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class CartService {
 
-  requestUrl:string = "http://" + window.location.hostname + ":3301";
+  requestUrl:string = "https://" + window.location.hostname + ":3301";
   //requestUrl:string='http://localhost:3301';
 
   constructor(private http:HttpClient) { }

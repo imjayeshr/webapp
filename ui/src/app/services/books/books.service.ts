@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 export class BooksService {
 
   //requestUrl:string='http://localhost:3301';
-  requestUrl:string = "http://" + window.location.hostname + ":3301";
+  requestUrl:string = "https://" + window.location.hostname + ":3301";
   //requestUrl:string=process.env.BASE_URL;
   constructor(private http:HttpClient) { }
 
