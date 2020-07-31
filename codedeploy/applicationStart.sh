@@ -11,7 +11,12 @@ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -
 #export HOME='/home/ubuntu'
 sudo pm2 start /home/ubuntu/webapp/server.js
 crontab /home/ubuntu/webapp/codedeploy/crontab.txt
-
+ls -al
+cd /home/ubuntu/webapp/
+ls -al
+sudo pm2 stop server
+sudo pm2 delete server
+sudo pm2 start server.js
 #sudo PM2_HOME='/home/ubuntu/.pm2' pm2 start /home/ubuntu/webapp/server.js
 #pm2 start server.js
 sleep 5
