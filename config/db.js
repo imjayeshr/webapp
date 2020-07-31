@@ -12,7 +12,12 @@ console.log("connecting using"+ process.env.RDS_PASSWORD + process.env.RDS_USERN
 if (process.env.APPLICATION_ENV === 'prod') {
   seq = new Sequelize('csye6225', process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
     host: process.env.RDS_HOSTNAME,
-    dialect: 'postgres' })
+    dialect: 'postgres' ,
+    dialectOptions: {
+      ssl: {
+        ca: ca
+      }
+  }})
     dialectOptions: {
       ssl: {
         ca: ca
