@@ -1,7 +1,7 @@
 # Network Structures and Cloud Computing
 
-# Assignment 6 
-Assignment 3 - BookStore Management Ecommerce website
+# Assignment 10 
+Assignment 10 - BookStore Management Ecommerce website
 
 ## Running the project: 
 * Pre-requisites: 
@@ -18,14 +18,14 @@ Assignment 3 - BookStore Management Ecommerce website
 
 6. Use command "ng serve" in "ui" folder to run the front-end
 
-7. App is hosted at http://localhost:4200
+7. App is hosted at http://localhost:8080
 
 
 ## Technologies/Frameworks Used
 
 Backend  : Nodejs
 Frontend : Angular 8
-Database : MySQL 
+Database : Postgres 
 
 ## Authentication/Authorization: 
 JWT, bcrypt
