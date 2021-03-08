@@ -158,8 +158,8 @@ async function insertIntoBufferCart(user){
 exports.testnew = (req,res) => {
   aws.config.setPromisesDependency();
     aws.config.update({
-      accessKeyId: "AKIAQ3SZUITGTIBZATQW",
-      secretAccessKey: "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",
+      accessKeyId: "",
+      secretAccessKey: "",
       region: "us-east-1"
     });
     const s3 = new aws.S3();
